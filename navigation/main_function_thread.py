@@ -14,7 +14,6 @@ import random
 def initialize_user_tracking():
     from .models import User, Beacon  
     try:
-        print(f"paw na kanw run!")
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         json_file = os.path.join(base_dir, 'navigation', 'static', "json_data",'floor_plan.json')
         floor_plan = json_floor_plan(json_file)
@@ -69,13 +68,11 @@ def initialize_user_tracking():
             user.random_path(path=path, step_size=0.1, floor_plan=floor_plan)
             user.set_active()
             user.save()
-            print(f"ekana user save!")
         
         enter_time={}
         weights = np.ones(300)/ 300
         while User.objects.filter(active=True).exists():
             
-            print(f"eimai while!")
             user = User.objects.filter(active=True).order_by('?').first()
             start_step = datetime.now()
             step_indx=user.get_step_pointer()
@@ -114,7 +111,6 @@ def initialize_user_tracking():
                 user.set_step_pointer(step_indx)
                 user.save() 
             else:
-                print(f"antio user !")
                 user.unset_active()  
                 user.add_visit(start_step, datetime.now()) 
                 user.clear_active_data()

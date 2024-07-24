@@ -27,25 +27,20 @@ function loadMapView(selectedView) {
     
     clearInterval(pathInterval)
     clearInterval(heatmapInterval)
-    console.log("view=", view)
     //view : user paths
     if (view == 0) {
-        console.log("kanw user paths")
         clearHeatmap()
         drawUserPaths()
         pathInterval = setInterval(drawUserPaths, 1000)
     }
     //view : heatmap
     else if (view == 1) {
-        console.log("kanw heatmap")
         clearUserPaths()
         drawHeatmapUser()
         heatmapInterval = setInterval(drawHeatmapUser, 1000)
     }
     //view : userpaths + heatmap
     else {
-        console.log("kanw kai ta 2")
-
         clearUserPaths()
         clearHeatmap()
         drawUserPaths()
@@ -99,7 +94,6 @@ function fetchUserData() {
         .then(response => response.json())
         .then(updatedUserPathsData => {
             userPathsData = updatedUserPathsData;
-            console.log("fetched user data",userPathsData)
         })
         .catch(error => console.error('Error user paths:', error));
 }
@@ -115,15 +109,12 @@ function loadFloorPlan(floor) {
         .then(data => {
             const importedNode = document.importNode(data.documentElement, true);
             svgContainer.node().appendChild(importedNode);
-            console.log("Selected view:", view);
             loadMapView(view);
         })
         .catch(error => console.error('Error loading SVG:', error));
 }
 function checkBeaconCoverage(checked) {
-    console.log("beacon check, value = ",checked)
     if (checked) {
-        console.log("beacon data", floorPlanData[selectedFloor].beacons)
         loadBeaconCoverage(floorPlanData[selectedFloor].beacons);
     } else {
         d3.select(document.getElementById("heatmap_container")).select('svg')
@@ -156,7 +147,6 @@ function loadBeaconCoverage(beacons){
 }
 
 function drawUserPaths() {
-    console.log("paw na kanw draw ta user paths")
     clearUserPaths();
 
     const userGroups = svgContainer.selectAll('.user-path-group')
@@ -241,9 +231,6 @@ function drawHeatmapBeacon() {
                 max: max,
                 data: heatmapData
             });
-
-            console.log('getData heatmap', heatmap.getData());
-            console.log('heatmap', heatmap);
         })
         .catch(error => {
             console.error('Error fetching heatmap data:', error);

@@ -20,10 +20,7 @@ function loadCoveragePieChart() {
                         '#0a2342',
                         '#19a979'
                     ],
-                   /* borderColor: [
-                        '#ffffff',
-                        '#ffffff'
-                    ], borderWidth: 2*/borderWidth: 0
+                    borderWidth: 0
                 }],
                 labels: ['Covered Area', 'Uncovered Area'],
             };

@@ -16,8 +16,6 @@ from collections import Counter, defaultdict
 from .main_function_thread import initialize_user_tracking
 user_lock = threading.Lock()
 beacon_lock = threading.Lock()
-#active_thread = None
-#stop_thread = threading.Event()
 
 def home(request):
     initialize_user_tracking.delay()
@@ -98,7 +96,6 @@ def get_area_coverage(request):
             }
     
     area_covered = area_coverage(users, floor_plan)
-    print(f"coverage area : ",area_covered)
     return JsonResponse({
         'area_covered': float(area_covered) 
     })
