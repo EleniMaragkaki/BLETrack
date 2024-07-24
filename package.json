@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "heatmap.js": "^2.0.5"
+  }
+}

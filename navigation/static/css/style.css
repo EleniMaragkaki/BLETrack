@@ -1,0 +1,124 @@
+#heatmap_svg_container {
+    width: 900px;
+    height: 700px;
+}
+
+#area_coverage_container {
+    height: 200px !important;
+    width: 200px !important;
+    margin-top: 5vh;
+}
+
+#heatmap_data_row {
+    margin-top: 13vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+
+
+#data_container {
+    flex: 1;
+    margin-right: 1vw;
+    margin-left: 4vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#activeUsersTitle,
+#activeUsersText {
+    font-size: 16px;
+}
+
+#visitors_container {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+#traffic_volume_day_container,
+#traffic_volume_div {
+
+    width: 230px !important;
+    height: 260px !important;
+}
+
+#traffic_volume_container {
+    margin-top: 5%;
+}
+
+#traffic_volume_hour_container,
+#traffic_volume_div1 {
+    height: 260px !important;
+}
+
+#navBar {
+    top: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 5;
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #ececec;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#lala {
+    width: inherit;
+    height: inherit;
+    position: absolute !important;
+}
+
+#dropdowns {
+    margin-left: 0vw;
+}
+
+#viewSelector {
+    margin-left: 3vw;
+    width: fit-content;
+    background-color: #19a979;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover,
+.btn:hover {
+    background-color: #148667;
+}
+
+#floorSelector {
+    background-color: #19a979;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#activeUsersContainer {
+    width: 230px;
+    height: fit-content;
+    background-color: #ffffff;
+    color: #0a2342;
+    border: 1px solid #ececec;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+#beaconCheckbox {
+    background-color: #19a979;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-left: 3vw;
+    display: inline-block;
+}
+
+#beaconCheckbox .form-check-label {
+    margin: 0;
+    padding: 0;
+}

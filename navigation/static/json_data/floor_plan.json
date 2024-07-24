@@ -1,0 +1,225 @@
+{
+    "0" :{
+    "rooms": [
+      [
+        [0, 0],
+        [4, 0],
+        [4, 3],
+        [0, 3],
+        [0, 0]
+      ],
+      [
+        [5, 0],
+        [9, 0],
+        [9, 7],
+        [5, 7],
+        [5, 0]
+      ],
+      [
+        [0, 4],
+        [4, 4],
+        [4, 7],
+        [0, 7],
+        [0, 4]
+      ]
+    ],
+    "corridors": [
+      [
+        [4.1, 0],
+        [4.9, 0],
+        [4.9, 7],
+        [4.1, 7],
+        [4.1, 0]
+      ],
+      [
+        [0, 3.1],
+        [4, 3.1],
+        [4, 3.9],
+        [0, 3.9],
+        [0, 3.1]
+      ]
+    ],
+    "entrance": [
+      [
+        [4.0, 7],
+        [5, 7]
+      ]
+    ],
+    "doors": {
+      "door1": [
+        [4, 1.5],
+        [4, 2]
+      ],
+      "door2": [
+        [4, 5.1],
+        [4, 5.6]
+      ],
+      "door3": [
+        [5, 6],
+        [5, 6.5]
+      ],
+      "door4": [
+        [5, 1],
+        [5, 1.5]
+      ],
+      "door5": [
+        [0.7, 3],
+        [1.2, 3]
+      ],
+      "door6": [
+        [2.35, 4],
+        [2.85, 4]
+      ]
+    },
+    "beacons": [
+      {
+        "transmit_power": 8,
+        "coordinates": [1, 6]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [7.4, 6]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [4.4, 1]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [1, 4.3]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [3.7, 4.3]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [1.5, 1.4]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [4.4, 6]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [6, 3]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [7.6, 1.6]
+      }
+    ],
+      "stairs": [{ 
+        "coordinates": [[0, 1], [2, 1], [2, 0], [0, 0],[0,1]],
+        "from_floor": 0,
+        "to_floor": 1,
+        "to_coordinates" : [2.01,0.5]
+      }
+      ]
+  },
+  "1":{
+    "rooms": [
+      [
+        [0, 0],
+        [9, 0],
+        [9, 3],
+        [0, 3],
+        [0, 0]
+      ],    [
+        [5,4],
+        [9, 4],
+        [9, 7],
+        [5, 7],
+        [5,4]
+      ],
+      [
+        [0, 4],
+        [4, 4],
+        [4, 7],
+        [0, 7],
+        [0, 4]
+      ]
+    ],
+    "corridors": [
+      [
+        [4.1, 0],
+        [4.9, 0],
+        [4.9, 7],
+        [4.1, 7],
+        [4.1, 0]
+      ],
+      [
+        [0, 3.1],
+        [4, 3.1],
+        [4, 3.9],
+        [0, 3.9],
+        [0, 3.1]
+      ]
+    ],
+    "doors": {
+      "door2": [
+        [4, 5.1],
+        [4, 5.6]
+      ],
+      "door3": [
+        [5, 6],
+        [5, 6.5]
+      ],
+      "door5": [
+        [0.7, 3],
+        [1.2, 3]
+      ],
+      "door6": [
+        [2.35, 4],
+        [2.85, 4]
+      ]
+    },
+  
+    "beacons": [
+      {
+        "transmit_power": 8,
+        "coordinates": [1.6, 6]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [7.4, 6]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [4.4, 1]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [1, 4.3]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [3.7, 4.3]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [1.5, 1.4]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [4.4, 6]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [6.2, 3.6]
+      },
+      {
+        "transmit_power": 8,
+        "coordinates": [7.6, 1.6]
+      }
+    ],
+  
+  
+  "stairs": [{ 
+      "coordinates": [[0, 1], [2, 1], [2, 0], [0, 0],[0,1]],
+      "from_floor": 1,
+      "to_floor": 0,
+      "to_coordinates" : [2.01,0.5]
+  }]
+  }
+  }
