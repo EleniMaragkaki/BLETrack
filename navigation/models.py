@@ -83,7 +83,6 @@ class User(models.Model):
             ):
                 return True
         for stair in stairs:
-            #SOS tsekare to isws einai lathos
             stair_polygon = Polygon(stair["coordinates"])
             if stair_polygon.contains(point):
                 return True
@@ -113,8 +112,6 @@ class User(models.Model):
                     for stair in stairs:
                         stair_polygon = Polygon(stair["coordinates"])
                         if stair_polygon.contains(Point(new_x, new_y)):
-                            print(f"Stair contains new x, y in user random path")
-                            print(f"New x, y = {stair['to_coordinates']}, new z={stair['to_floor']} ")
                             new_x, new_y = stair["to_coordinates"]
                             new_z = stair["to_floor"]
                             z1= new_z
