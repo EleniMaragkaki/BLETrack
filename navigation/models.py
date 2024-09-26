@@ -6,12 +6,14 @@ from datetime import datetime
 class User(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255)
-    path = models.JSONField(default=list)
+    #path = models.JSONField(default=list)
     estimated_path = models.JSONField(default=list)
     time_spent = models.JSONField(default=dict) 
     active = models.BooleanField(default=True) 
     past_visits = models.JSONField(default=list)  
-    step_pointer = models.IntegerField(default=0)
+    #step_pointer = models.IntegerField(default=0)
+    last_update = models.DateField(default=datetime.now())
+    first_step=models.DateField(default=datetime.now())
 
     def set_step_pointer(self, pointer):
         self.step_pointer = pointer
@@ -19,6 +21,7 @@ class User(models.Model):
 
     def get_step_pointer(self):
         return self.step_pointer
+    
     def __str__(self):
         return self.username
     
@@ -38,12 +41,12 @@ class User(models.Model):
         self.save()
 
     def clear_active_data(self):
-        self.path = []
-        self.step_pointer=0
+        #self.path = []
+        #self.step_pointer=0
         self.estimated_path = []
         self.time_spent = {}
         self.save()
-        
+    """
     def is_valid_step(self,x, y,z, prev_position, floor_plan):
         rooms = floor_plan[z].get("rooms", [])
         corridors = floor_plan[z].get("corridors", [])
@@ -121,7 +124,7 @@ class User(models.Model):
     
     def get_path(self):
         return self.path
-
+"""
     def get_estimated_path(self):
         return self.estimated_path
 

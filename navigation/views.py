@@ -39,6 +39,7 @@ def add_user(request):
             if username:
                 newUser = User(username=username)
                 #set active?
+                newUser.set_active()
                 newUser.save()
                 return JsonResponse({"message":"User added to db",
                                     "id":newUser.id,
@@ -67,10 +68,11 @@ def add_user_step(request):
             except User.DoesNotExist:
                 return JsonResponse({"error":"User not found"},status =404)
             if new_step:
+                user.set_active()
                 user.estimated_path.append(new_step)
                 user.save()
                 #vale auto gia na ananewthoun ta data gia swsta dedomena sto plai k sto heatmap
-                #addDataToBase()
+                addDataToBase(user, new_step)
                 return JsonResponse({"message": "User Step Added","user_id":user.id, "user_path": user.estimated_path}, status=200)
             else:
                 return JsonResponse({"error": "Invalid step"}, status=400)

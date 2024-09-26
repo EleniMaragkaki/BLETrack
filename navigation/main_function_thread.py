@@ -74,6 +74,7 @@ def initialize_user_tracking():
         while User.objects.filter(active=True).exists():
             
             user = User.objects.filter(active=True).order_by('?').first()
+            first_step = datetime.now()
             start_step = datetime.now()
             step_indx=user.get_step_pointer()
             if(step_indx<len(user.get_path())):
@@ -112,7 +113,7 @@ def initialize_user_tracking():
                 user.save() 
             else:
                 user.unset_active()  
-                user.add_visit(start_step, datetime.now()) 
+                user.add_visit(first_step, datetime.now()) 
                 user.clear_active_data()
         return None 
     except Exception as e:

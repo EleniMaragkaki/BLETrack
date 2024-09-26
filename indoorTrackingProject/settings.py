@@ -129,3 +129,10 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 CELERY_ENABLE_UTC = True
+
+CELERY_BEAT_SCHEDULE = {
+    'check-inactive-users': {
+        'task': 'navigation.tasks.check_inactive',
+        'schedule': 20.0, 
+    },
+}
