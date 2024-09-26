@@ -107,7 +107,9 @@ button:hover,
     border-radius: 8px;
 }
 
-#beaconCheckbox {
+#beaconCheckbox
+
+{
     background-color: #19a979;
     color: #ffffff;
     border: none;
@@ -118,6 +120,19 @@ button:hover,
     display: inline-block;
 }
 
+
+
+#removeUserCheckbox{
+    background-color: #19a979;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-left: 3vw!important;
+    display: inline-block;
+    margin: 0;
+}
 #beaconCheckbox .form-check-label {
     margin: 0;
     padding: 0;

@@ -1,7 +1,7 @@
 from django.db import models
 import numpy as np
 from shapely.geometry import Point, Polygon, LineString
-from datetime import datetime
+from datetime import datetime,timezone
 
 class User(models.Model):
     id = models.AutoField(primary_key=True)
@@ -12,8 +12,8 @@ class User(models.Model):
     active = models.BooleanField(default=True) 
     past_visits = models.JSONField(default=list)  
     #step_pointer = models.IntegerField(default=0)
-    last_update = models.DateField(default=datetime.now())
-    first_step=models.DateField(default=datetime.now())
+    last_update = models.DateTimeField(default=datetime.now)
+    first_step=models.DateTimeField(default=datetime.now)
 
     def set_step_pointer(self, pointer):
         self.step_pointer = pointer

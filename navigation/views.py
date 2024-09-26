@@ -94,7 +94,7 @@ def get_user_paths(request):
         for user in users:
             user_data[user.username] = {
                 'user_id': user.username,
-                'path': user.get_path(),
+                #'path': user.get_path(),
                 'estimated_path': user.get_estimated_path(),
                 'time_spent': user.get_time_spent()
             }
@@ -204,7 +204,7 @@ def get_traffic_volume_week(request):
     return JsonResponse(chart_data)
 
 def get_traffic_volume_hour(request):
-    
+        
     users = User.objects.all()
     
     def get_hour(date_string):
@@ -231,3 +231,11 @@ def get_traffic_volume_hour(request):
     }
     
     return JsonResponse(chart_data)
+
+def removeUserPaths(request):
+    users = User.objects.all()
+    for user in users:
+        user.unset_active
+        user.add_visit(user.first_step,datetime.now())
+        user.clear_active_data()
+    return JsonResponse({"message":"User paths removed!"})

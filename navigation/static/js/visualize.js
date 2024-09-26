@@ -62,11 +62,11 @@ function clearUserPaths() {
 }
 function fetchDataAndVisualize() {
     Promise.all([
-        fetch('/get_user_paths/').then(response => response.json()),
+        //fetch('/get_user_paths/').then(response => response.json()),
         fetch('/get_floor_plan/').then(response => response.json())
 
     ]).then(([userData, floorPlan]) => {
-        userPathsData = userData;
+       // userPathsData = userData;
         floorPlanData = floorPlan;
 
         svgContainer = d3.select(document.getElementById("heatmap_container"))
@@ -243,4 +243,22 @@ function scaleUserPath(point) {
     const scaledX = point[0] * scale;
     const scaledY = (7 - point[1]) * scale;
     return [scaledX, scaledY];
+}
+
+function removeUsers(isChecked) {
+    if (isChecked) {
+        console.log("removing user paths...")
+
+        fetch('/removeUserPaths/')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message); 
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+        setTimeout(function() {
+            document.getElementById("removeUserPathsCheckbox").checked = false;  
+        }, 1000); 
+    }
 }

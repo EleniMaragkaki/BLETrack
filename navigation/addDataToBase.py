@@ -1,6 +1,7 @@
 from .models import User, Beacon  
 import os
 from datetime import datetime,timedelta
+from django.utils import timezone
 import numpy as np
 import time
 from .particle_filtering import json_floor_plan
@@ -8,7 +9,10 @@ from .particle_filtering import json_floor_plan
 def addDataToBase(user,currStep):
     if not user.estimated_path:
         user.first_step = datetime.now()
-    start_step = datetime.now()
+        user.save()
+        start_step = user.first_step
+    else:
+        start_step = user.last_update
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     json_file = os.path.join(base_dir, 'navigation', 'static', "json_data",'floor_plan.json')
     floor_plan = json_floor_plan(json_file)
@@ -22,8 +26,7 @@ def addDataToBase(user,currStep):
     user.update_time_spent(currStep.tolist(), time_spent)
     user.last_update = end_step
     user.save() 
-    start_step = end_step
-    user.save() 
+
 
 def removeInactiveUsers():
     limit = datetime.now()-timedelta(seconds = 20)
