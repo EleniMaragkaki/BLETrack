@@ -233,8 +233,8 @@ def get_traffic_volume_hour(request):
     return JsonResponse(chart_data)
 
 def removeUserPaths(request):
-    users = User.objects.all()
-    for user in users:
+    active_users = User.objects.filter(active=True)
+    for user in active_users:
         user.unset_active
         user.add_visit(user.first_step,datetime.now())
         user.clear_active_data()

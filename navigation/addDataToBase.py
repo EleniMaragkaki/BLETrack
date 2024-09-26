@@ -31,7 +31,7 @@ def addDataToBase(user,currStep):
 def removeInactiveUsers():
     limit = datetime.now()-timedelta(seconds = 20)
     #last update<limit --> deactivate user
-    inactive_users = User.objects.filter(last_update_lt=limit)
+    inactive_users = User.objects.filter(last_update__lt=limit, active=True)
     for user in inactive_users:
         user.unset_active
         user.add_visit(user.first_step,datetime.now())
