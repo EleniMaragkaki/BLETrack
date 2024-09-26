@@ -14,15 +14,75 @@ from django.shortcuts import render
 import threading
 from collections import Counter, defaultdict
 from .main_function_thread import initialize_user_tracking
+from .addDataToBase import addDataToBase
 user_lock = threading.Lock()
 beacon_lock = threading.Lock()
 
 def home(request):
-    initialize_user_tracking.delay()
+    #gia na treksei me kanonikes times, comment out to init
+    #comment out ama de theloume generated paths
+    #initialize_user_tracking.delay()
     return render(request, 'navigation/index.html')
 
+"""
+adds user to db
+url:
+http://127.0.0.1:8000/navigation/add_user
 
-"""epistrefei ta user paths apo db
+"""
+def add_user(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            username= data.get('username')
+            
+            if username:
+                newUser = User(username=username)
+                #set active?
+                newUser.save()
+                return JsonResponse({"message":"User added to db",
+                                    "id":newUser.id,
+                                    "username":newUser.username},status=201)
+            else:
+                return JsonResponse({"error": "Invalid username"})
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+    return JsonResponse({"error": "Invalid request method"}, status=405)
+
+"""
+request to add a user step
+
+"""
+def add_user_step(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            user_id = data.get('user_id')
+
+            new_step = data.get('step')
+            if not user_id :
+                return JsonResponse({"error":"No user id inputed"},status=400)
+            try :
+                user = User.objects.get(id=user_id)
+            except User.DoesNotExist:
+                return JsonResponse({"error":"User not found"},status =404)
+            if new_step:
+                user.estimated_path.append(new_step)
+                user.save()
+                #vale auto gia na ananewthoun ta data gia swsta dedomena sto plai k sto heatmap
+                #addDataToBase()
+                return JsonResponse({"message": "User Step Added","user_id":user.id, "user_path": user.estimated_path}, status=200)
+            else:
+                return JsonResponse({"error": "Invalid step"}, status=400)
+        except User.DoesNotExist:
+            return JsonResponse({"error": "User not found"}, status=404)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+    else:
+        return JsonResponse({"error": "Invalid request method"}, status=405)
+
+"""
+returns user paths from the db
 """
 def get_user_paths(request):
     

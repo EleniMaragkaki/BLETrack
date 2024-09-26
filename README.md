@@ -12,7 +12,7 @@ BLETrack is an indoor tracking and visualization system that utilizes BLE Beacon
 
 1. Clone the repository
 
-2. Run Redis server:
+2. Run Redis server (wsl):
     ```bash
     redis-server
     ```
@@ -31,3 +31,4 @@ BLETrack is an indoor tracking and visualization system that utilizes BLE Beacon
     ```plaintext
     http://127.0.0.1:8000/
     ```
+~

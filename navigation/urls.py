@@ -12,7 +12,7 @@ urlpatterns = [
     path('get_traffic_volume_week/', views.get_traffic_volume_week, name='get_traffic_volume_week'),
     path('get_traffic_volume_hour/', views.get_traffic_volume_hour, name='get_traffic_volume_hour'),
     path('get_heatmap_data/', views.get_heatmap_data, name='get_heatmap_data'),
-
-
+    path('add_user_step/', views.add_user_step, name='add_user_step'),
+    path('add_user/', views.add_user, name='add_user'),
 
 ]
