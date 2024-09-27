@@ -12,6 +12,7 @@ class User(models.Model):
     active = models.BooleanField(default=True) 
     past_visits = models.JSONField(default=list)  
     step_pointer = models.IntegerField(default=0)
+    first_step=models.DateTimeField(default=datetime.now)
 
     def set_step_pointer(self, pointer):
         self.step_pointer = pointer

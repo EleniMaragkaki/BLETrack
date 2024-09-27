@@ -69,18 +69,19 @@ def initialize_user_tracking():
             user.set_active()
             user.save()
         
-        enter_time={}
         weights = np.ones(300)/ 300
         while User.objects.filter(active=True).exists():
             
             user = User.objects.filter(active=True).order_by('?').first()
+            user.refresh_from_db() 
             start_step = datetime.now()
             step_indx=user.get_step_pointer()
             if(step_indx<len(user.get_path())):
                 real_pos=user.get_path()[step_indx]
                 if(step_indx==0):
                     start_step = datetime.now()
-                    enter_time[user.username] = datetime.now()
+                    user.first_step = datetime.now()
+                    user.save
                     prev_position = real_pos
                 else:
                     prev_position = user.estimated_path[-1]
@@ -112,7 +113,7 @@ def initialize_user_tracking():
                 user.save() 
             else:
                 user.unset_active()  
-                user.add_visit(start_step, datetime.now()) 
+                user.add_visit(user.first_step, datetime.now()) 
                 user.clear_active_data()
         return None 
     except Exception as e:

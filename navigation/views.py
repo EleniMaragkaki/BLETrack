@@ -14,6 +14,7 @@ from django.shortcuts import render
 import threading
 from collections import Counter, defaultdict
 from .main_function_thread import initialize_user_tracking
+from django.db import transaction
 user_lock = threading.Lock()
 beacon_lock = threading.Lock()
 
@@ -169,3 +170,14 @@ def get_traffic_volume_hour(request):
     }
     
     return JsonResponse(chart_data)
+
+def removeUserPaths(request):
+    with transaction.atomic():
+        active_users = User.objects.filter(active=True)
+        for user in active_users:
+            #user.unset_active
+            user.add_visit(user.first_step,datetime.now())
+            user.clear_active_data()
+            user.save()
+            User.objects.filter(active=True).update(active=False)
+        return JsonResponse({"message":"User paths removed!"})

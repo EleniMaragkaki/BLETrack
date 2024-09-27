@@ -122,3 +122,16 @@ button:hover,
     margin: 0;
     padding: 0;
 }
+
+#removeUser {
+    color: #ffffff; 
+    border: none;  
+    cursor: pointer; 
+    padding: 8px 16px; 
+    border-radius: 4px;
+    margin-left: 3vw;
+    display: inline-block; 
+    vertical-align: middle; 
+    width: fit-content;
+    height: fit-content;
+}

@@ -12,6 +12,8 @@ urlpatterns = [
     path('get_traffic_volume_week/', views.get_traffic_volume_week, name='get_traffic_volume_week'),
     path('get_traffic_volume_hour/', views.get_traffic_volume_hour, name='get_traffic_volume_hour'),
     path('get_heatmap_data/', views.get_heatmap_data, name='get_heatmap_data'),
+    path('removeUserPaths/', views.removeUserPaths, name='removeUserPaths'),
+
 
 
 
