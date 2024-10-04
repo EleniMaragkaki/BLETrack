@@ -104,7 +104,7 @@ function loadFloorPlan(floor) {
     console.log("floor:", selectedFloor);
 
     svgContainer.selectAll("*").remove();
-    const svgFile = `static/images/floor${selectedFloor}.svg`;
+    const svgFile = `static/images/desk.svg`;
     d3.xml(svgFile)
         .then(data => {
             const importedNode = document.importNode(data.documentElement, true);

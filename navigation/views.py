@@ -173,7 +173,7 @@ def get_traffic_volume_hour(request):
 
 def removeUserPaths(request):
     with transaction.atomic():
-        active_users = User.objects.filter(active=True)
+        active_users = User.objects.select_for_update().filter(active=True)
         for user in active_users:
             #user.unset_active
             user.add_visit(user.first_step,datetime.now())

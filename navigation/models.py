@@ -9,7 +9,7 @@ class User(models.Model):
     path = models.JSONField(default=list)
     estimated_path = models.JSONField(default=list)
     time_spent = models.JSONField(default=dict) 
-    active = models.BooleanField(default=True) 
+    active = models.BooleanField(default=False) 
     past_visits = models.JSONField(default=list)  
     step_pointer = models.IntegerField(default=0)
     first_step=models.DateTimeField(default=datetime.now)
