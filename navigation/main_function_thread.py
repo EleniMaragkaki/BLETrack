@@ -20,44 +20,9 @@ def initialize_user_tracking():
 
         user_paths = {
         "MAC_ID1": [
-                (4.4, 6.9,0),
-                (4.51, 6.1,0),
-                (5.1, 6,0),
-                (5.6, 5.8,0),
-                (5.7, 5.2,0),
-                (5.7, 4.9,0),
-                (5.7, 4,0),
-                (5.6, 3.5,0),
-                (5.5, 3,0),
-                (5.4, 2.5,0),
-                (5.3, 2,0),
-                (5.3, 1.5,0),
-                (5.2, 1.1,0),
-                (4.8, 1.6,0),
-                (3, 1.5,0),
-                (1, 2,0),
-                (0.8, 2.8,0),
-                (0.8, 3.8,0),
-                (2.5, 3.6,0),
-                (2.5, 4.6,0),
-                (1, 5.5,0),
-                (3.6, 5.1,0),
-                (4.3, 5.1,0),
-                (4.1, 6.9,0),
+             (2.0, 3.3716, 0.0),  (2.34375, 3.2808, 0.0),  (2.6875, 2.9915, 0.0),  (3.03125, 3.1692, 0.0),  (3.375, 3.2073, 0.0),  (3.61875, 3.0041, 0.0),  (4.0625, 3.1910, 0.0),  (4.40625, 3.3980, 0.0),  (4.75, 3.0158, 0.0),  (5.09375, 3.2852, 0.0),  (5.4375, 3.3864, 0.0),  (5.78125, 3.2323, 0.0),  (6.125, 3.2958, 0.0),  (6.46875, 3.1459, 0.0),  (6.8125, 3.0616, 0.0),  (7.15625, 3.1941, 0.0),  (7.5, 3.2107, 0.0)
             ],
-            "MAC_ID2": [
-                (4.2, 6.85,0),
-                (4.15, 6.1,0),
-                (4.2, 5.5,0),
-                (3.5, 5.2,0),
-                (2.5, 4.3,0),
-                (3.3, 5,0),
-                (4.4, 5.5,0),
-                (4.8, 6.7,0),
-            ],
-            "MAC_ID3": [(4.5, 6.8,0), (4.6, 6.2,0), (6.5, 5.9,0), (8.5, 4.2,0), (7.6, 1,0)],
-            
-            "MAC_ID4": [(4.6, 6.82,0), (4.5, 5,0), (4.5, 3.5,0),(4.5, 3,0),(4.5, 2.5,0),(4.3, 1.8,0), (3.8, 1.8,0),(3.2, 1.5,0), (2.5, 1.5, 0),(1.98, 0.9, 0),(2.06, 0.6, 1),(2.5, 1, 1),(2.9,1, 1),(3.2,1.5,1),(4.5,2,1)]
+
         }
             
 
@@ -65,7 +30,10 @@ def initialize_user_tracking():
     
             user,created = User.objects.get_or_create(username=username)
             user.clear_active_data()
-            user.random_path(path=path, step_size=0.1, floor_plan=floor_plan)
+            print("after clear",user.path)
+            user.random_path(path=path, step_size=0.4, floor_plan=floor_plan)
+            print("after random path",user.path)
+
             user.set_active()
             user.save()
         
@@ -94,18 +62,18 @@ def initialize_user_tracking():
                         calculate_rss2(floor_plan, real_pos),
                         floor_plan,
                     )
-                estimated_position = particles[np.argmax(weights)]
-                user.estimated_path.append(estimated_position.tolist())
+                estimated_position = user.get_path()[step_indx]
+                user.estimated_path.append(estimated_position)
                 user.save()
                 prev_position = estimated_position
                 beacons = Beacon.objects.filter(beacon_id__in=floor_plan[estimated_position[2]]["beacons"])
                 for beacon in beacons:
                     beacon.detect_user(user.username, estimated_position)
                     beacon.save()
-                    time.sleep(np.random.uniform(0.05,0.20))
+                    time.sleep(np.random.uniform(0.3,0.6))
                 end_step = datetime.now()
                 time_spent = (end_step - start_step).total_seconds()
-                user.update_time_spent(prev_position.tolist(), time_spent)
+                user.update_time_spent(prev_position, time_spent)
                 user.save() 
                 start_step = end_step
                 step_indx += 1

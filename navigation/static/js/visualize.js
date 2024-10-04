@@ -76,7 +76,7 @@ function fetchDataAndVisualize() {
 
         heatmap = h337.create({
             container: document.getElementById("heatmap_container"),
-            radius: 20,
+            radius: 40,
             maxOpacity: .5,
             minOpacity: 0,
             blur: .85
@@ -251,9 +251,7 @@ function removeUsers() {
 
     fetch('/removeUserPaths/')
     .then(response => response.json())
-    .then(data => {
-        console.log(data.message); 
-    })
+
     .catch((error) => {
         console.error('Error:', error);
     });

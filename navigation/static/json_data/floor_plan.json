@@ -74,39 +74,11 @@
     "beacons": [
       {
         "transmit_power": 8,
-        "coordinates": [1, 6]
+        "coordinates": [1.39, 3.93]
       },
       {
         "transmit_power": 8,
-        "coordinates": [7.4, 6]
-      },
-      {
-        "transmit_power": 8,
-        "coordinates": [4.4, 1]
-      },
-      {
-        "transmit_power": 8,
-        "coordinates": [1, 4.3]
-      },
-      {
-        "transmit_power": 8,
-        "coordinates": [3.7, 4.3]
-      },
-      {
-        "transmit_power": 8,
-        "coordinates": [1.5, 1.4]
-      },
-      {
-        "transmit_power": 8,
-        "coordinates": [4.4, 6]
-      },
-      {
-        "transmit_power": 8,
-        "coordinates": [6, 3]
-      },
-      {
-        "transmit_power": 8,
-        "coordinates": [7.6, 1.6]
+        "coordinates": [7.33, 3.93]
       }
     ],
       "stairs": [{ 

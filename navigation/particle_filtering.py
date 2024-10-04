@@ -144,21 +144,22 @@ def motion_model(num_particles, prev_position, floor_plan):
                 prev_position[2]
             ]
         )
-        valid_particle = is_valid_particle(
-            new_particle[0], new_particle[1],new_particle[2], prev_position, floor_plan
-        )
-        if ( not valid_particle ) :
-            weights[i]=0
 
-        #checking if i need to change floor
-        #prepei na to allaksw na allazw ama vriskw shma ston allo orofo
-        stairs = floor_plan[prev_position[2]].get("stairs", [])
-        for stair in stairs:
-            stair_polygon = Polygon(stair["coordinates"])
-            if stair_polygon.contains(Point(new_particle[0], new_particle[1])):
-                new_particle[2] = stair["to_floor"]
-                new_particle[0], new_particle[1]= stair["to_coordinates"]
-                break
+        # valid_particle = is_valid_particle(
+        #     new_particle[0], new_particle[1],new_particle[2], prev_position, floor_plan
+        # )
+        # if ( not valid_particle ) :
+        #     weights[i]=0
+
+        # #checking if i need to change floor
+        # #prepei na to allaksw na allazw ama vriskw shma ston allo orofo
+        # stairs = floor_plan[prev_position[2]].get("stairs", [])
+        # for stair in stairs:
+        #     stair_polygon = Polygon(stair["coordinates"])
+        #     if stair_polygon.contains(Point(new_particle[0], new_particle[1])):
+        #         new_particle[2] = stair["to_floor"]
+        #         new_particle[0], new_particle[1]= stair["to_coordinates"]
+        #         break
 
         new_particles.append(new_particle)
         valid_particle = True

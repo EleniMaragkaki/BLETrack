@@ -2,7 +2,7 @@ from django.db import models
 import numpy as np
 from shapely.geometry import Point, Polygon, LineString
 from datetime import datetime
-
+import time
 class User(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255)
@@ -106,18 +106,8 @@ class User(models.Model):
                     new_x = x1 + j * add_x
                     new_y = y1 + j * add_y
                     new_z = z1
-                    while not self.is_valid_step(new_x, new_y, new_z, path[i], floor_plan):
-                        new_x += np.random.normal(scale=0.1)
-                        new_y += np.random.normal(scale=0.1)
-                    stairs = floor_plan[new_z].get("stairs", [])
-                    for stair in stairs:
-                        stair_polygon = Polygon(stair["coordinates"])
-                        if stair_polygon.contains(Point(new_x, new_y)):
-                            new_x, new_y = stair["to_coordinates"]
-                            new_z = stair["to_floor"]
-                            z1= new_z
-                            break
                     new_path.append((new_x, new_y, new_z))
+                    #time.sleep(np.random.uniform(0.5,1))
         self.path = new_path
     
     def get_path(self):
